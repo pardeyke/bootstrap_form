@@ -41,10 +41,10 @@ class ActionView::TestCase
   end
 
   # Originally only used in one test file but placed here in case it's needed in others in the future.
+  # This simulartes `form_with` without a model, which tests aspects that wouldn't otherwise
+  # be tested.
   def form_with_builder
-    builder = nil
-    bootstrap_form_with(model: @user) { |f| builder = f }
-    builder
+    BootstrapForm::FormBuilder.new(:user, false, self, {})
   end
 
   def sort_attributes(doc)
@@ -79,8 +79,8 @@ class ActionView::TestCase
     assert equivalent, lambda {
       # using a lambda because diffing is expensive
       Diffy::Diff.new(
-        expected_html.to_html(indent: 2),
-        actual_html.to_html(indent: 2)
+        HtmlBeautifier.beautify(expected_html.to_html(indent: 2)),
+        HtmlBeautifier.beautify(actual_html.to_html(indent: 2))
       ).to_s(:color)
     }
   end

@@ -10,6 +10,8 @@ Follow these steps to release a new version of bootstrap_form to rubygems.org.
 
 ## How to release
 
+In the `bootstrap_form` repository (not a fork):
+
 1. Determine which would be the correct next version number according to [semver](http://semver.org/).
 2. Update the version in `./lib/bootstrap_form/version.rb`.
 3. Make sure that you have all the gems necessary for testing and releasing.
@@ -24,9 +26,9 @@ Follow these steps to release a new version of bootstrap_form to rubygems.org.
 
    You will have failures in the system tests unless you're running on Linux. Chrome on each operating system renders slightly differently.
 
-6. Update the GitHub diff links at the beginning of `CHANGELOG.md` (The pattern should be obvious when you look at them).
 7. Update the installation instructions in `README.md` to use the new version.
 8. Commit the CHANGELOG and version changes in a single commit; the message should be "Preparing vX.Y.Z" where `X.Y.Z` is the version being released.
+8. If you did the above on a branch, merge it to `main`.
 9. Tag, push to GitHub, and publish to rubygems.org:
 
        bundle exec rake release
@@ -34,6 +36,7 @@ Follow these steps to release a new version of bootstrap_form to rubygems.org.
 10. Go to https://github.com/bootstrap-ruby/bootstrap_form/releases and create the new release and add release notes by clicking the "Generate release notes" button.
     Add the link of closed issues from CHANGELOG.
     Group the commits in sections:
+
     * ### New features
     * ### Bugfixes
     * ### Performance
